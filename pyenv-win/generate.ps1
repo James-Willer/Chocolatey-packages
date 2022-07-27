@@ -1,5 +1,4 @@
 $absPath = Split-Path -parent $PSCommandPath
-$toolsPath = "$absPath\tools\"
 $outputPath = "$(Split-Path -parent $absPath)\_output\"
 
 if ( -not ( Test-Path "$absPath\lastbuild.txt" ) )
@@ -27,7 +26,7 @@ if ($version -eq $lastbuild)
     exit
 }
 
-cp "$folder\.version" "$abspath\lastbuild.txt"
+Copy-Item "$folder\.version" "$abspath\lastbuild.txt"
 
 $archive = "$abspath/tools/pyenv-win.zip"
 Compress-Archive -Path "$folder/*" -DestinationPath $archive -CompressionLevel Optimal -Force

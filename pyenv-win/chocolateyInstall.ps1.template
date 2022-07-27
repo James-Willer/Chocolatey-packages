@@ -1,0 +1,17 @@
+Install-ChocolateyZipPackage `
+    -PackageName 'pyenv-win' `
+    -UnzipLocation "$env:USERPROFILE\.pyenv\" `
+    -File "$(Split-Path -parent $MyInvocation.MyCommand.Definition)/pyenv-win.zip" `
+    -ChecksumType "sha256" `
+    -Checksum "<<<Sha256Checksum>>>"
+
+Install-ChocolateyEnvironmentVariable `
+    -VariableName 'PYENV' `
+    -VariableValue '%USERPROFILE%\.pyenv\pyenv-win\' `
+    -VariableType 'Machine'
+
+Install-ChocolateyPath `
+    -PathToInstall '%USERPROFILE%\.pyenv\pyenv-win\bin'
+
+Install-ChocolateyPath `
+    -PathToInstall '%USERPROFILE%\.pyenv\pyenv-win\shims'
